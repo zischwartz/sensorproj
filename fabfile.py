@@ -20,21 +20,21 @@ def prepare_deploy():
 def prepare_server():
 	sudo('yum install git-core nginx -y mercurial python-devel')
 	#for mongodb
-	sudo('yum -y install git tcsh scons gcc-c++ glibc-devel')
-	sudo('yum -y install boost-devel pcre-devel js-devel readline-devel')
-	sudo('yum -y install boost-devel-static readline-static ncurses-staticl')
+	# sudo('yum -y install git tcsh scons gcc-c++ glibc-devel')
+	# sudo('yum -y install boost-devel pcre-devel js-devel readline-devel')
+	# sudo('yum -y install boost-devel-static readline-static ncurses-staticl')
 	sudo('easy_install pip')
 	sudo('pip install virtualenv')
-	sudo('pip install supervisor')
+	# sudo('pip install supervisor')
 
 
 	#for 32 bit
-	sudo('yum install http://downloads-distro.mongodb.org/repo/redhat/os/i686/RPMS/mongo-10gen-2.0.0-mongodb_1.i686.rpm -y --nogpgcheck')
-	sudo('yum install http://downloads-distro.mongodb.org/repo/redhat/os/i686/RPMS/mongo-10gen-server-2.0.0-mongodb_1.i686.rpm -y --nogpgcheck')
+	# sudo('yum install http://downloads-distro.mongodb.org/repo/redhat/os/i686/RPMS/mongo-10gen-2.0.0-mongodb_1.i686.rpm -y --nogpgcheck')
+	# sudo('yum install http://downloads-distro.mongodb.org/repo/redhat/os/i686/RPMS/mongo-10gen-server-2.0.0-mongodb_1.i686.rpm -y --nogpgcheck')
 	#64 bit at http://downloads-distro.mongodb.org/repo/redhat/os/
 
-	sudo('mkdir -p /data/db/')
-	sudo('sudo chown `id -u` /data/db')
+	# sudo('mkdir -p /data/db/')
+	# sudo('sudo chown `id -u` /data/db')
 
 
 
@@ -63,14 +63,14 @@ code_dir = env.path + env.prj_name
 
 def config_nginx():
 	with cd(env.path):					
-		# sudo("echo '%s' >> /etc/nginx/nginx.conf " % nginx_config)
-
 		# Put our django specific conf in the main dir
 		run("""echo "%s" > django_nginx.conf""" % nginx_config)
 
 		#link to it in nginx's conf
-		# sudo("ln -s  %sdjango_nginx.conf /etc/nginx/conf.d/django_nginx.conf" % env.path)
+		sudo("ln -s  %sdjango_nginx.conf /etc/nginx/conf.d/django_nginx.conf" % env.path)
 	
+
+  
 		# sudo chown nginx -R static/
 		#sudo chown nginx:nginx -R static/
 
