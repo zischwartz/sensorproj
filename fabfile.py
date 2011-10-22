@@ -3,11 +3,11 @@ from fabric.api import *
 from fabric.contrib.console import confirm
 from contextlib import contextmanager as _contextmanager
 
-env.hosts = ['ec2-user@ec2-107-22-54-148.compute-1.amazonaws.com']
+env.hosts = ['ec2-user@ec2-184-72-157-27.compute-1.amazonaws.com']
 
-env.path = '/home/ec2-user/sensorproj/'
-env.prj_name = 'voices'
-env.git_repo = 'git://github.com/zischwartz/owsvoices.git'
+env.path = '/home/ec2-user/understandingnetworks/'
+env.prj_name = 'sensorproj'
+env.git_repo = 'git://github.com/zischwartz/sensorproj.git'
 env.activate = 'source %sbin/activate' % env.path
 
 
@@ -70,7 +70,7 @@ def config_nginx():
 		sudo("ln -s  %sdjango_nginx.conf /etc/nginx/conf.d/django_nginx.conf" % env.path)
 	
 
-  
+
 		# sudo chown nginx -R static/
 		#sudo chown nginx:nginx -R static/
 
